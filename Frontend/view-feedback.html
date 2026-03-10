@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>View Feedback</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>All Feedback</h2>
+
+<ul id="feedbackList"></ul>
+
+<script>
+
+async function loadFeedback(){
+
+const res = await fetch("http://localhost:3000/all-feedback");
+
+const data = await res.json();
+
+const list = document.getElementById("feedbackList");
+
+data.forEach(f => {
+const li = document.createElement("li");
+li.innerText = f.name + " (" + f.event + ") : " + f.feedback;
+list.appendChild(li);
+});
+
+}
+
+loadFeedback();
+
+</script>
+
+</body>
+</html>
